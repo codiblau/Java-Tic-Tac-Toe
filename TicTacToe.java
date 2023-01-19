@@ -111,10 +111,6 @@ public class TicTacToe {
 
 	    }
 
-  public static void prova(){
-    System.out.println("Ha funcionat!");
-  }
-
 /*
 
 Si volem el següent taulell:
@@ -128,7 +124,10 @@ Passarem el paràmetre "args" de la següent manera:
 args = [1,2,3,4,5,6,7,8,9]
  */
   public static void main(String[] args) {
-    
+    main2(args);
+  }//end main
+  
+  public static String main2(String[] args){
     int[][] grid = new int[3][3];
     boolean cheating = false;
 
@@ -142,9 +141,9 @@ args = [1,2,3,4,5,6,7,8,9]
     }
 
     int foundWinner = 0;
-    
+
     printBoard(grid);
-    
+
     int i=0;
     while(i<9)
     {
@@ -153,6 +152,9 @@ args = [1,2,3,4,5,6,7,8,9]
         if(getWinner("Player 1 turn",grid,1,cheating))
         {
           foundWinner=1;
+          if(cheating){
+            return "Player 1 WINS!";
+          }
           System.out.println("Player 1 WINS!");
           break;
         }
@@ -164,6 +166,9 @@ args = [1,2,3,4,5,6,7,8,9]
         if(getWinner("Player 2 turn",grid,2,cheating))
         {
           foundWinner=1;
+          if(cheating){
+            return "Player 2 WINS!";
+          }
           System.out.println("Player 2 WINS!");
           break;
         }
@@ -172,10 +177,15 @@ args = [1,2,3,4,5,6,7,8,9]
       }
       i++;
     }
-    
-    if(foundWinner == 0)
+
+    if(foundWinner == 0) {
+      if(cheating){
+        return "It's a draw!";
+      }
       System.out.println("It's a draw!");
- 
-  }//end main
+    }
+    
+    return "";
+  }
  }//end class
 

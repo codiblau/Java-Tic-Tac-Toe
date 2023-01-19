@@ -70,10 +70,10 @@ public class TicTacToe {
       return false;
   }
   
-  public static boolean getWinner(String turnPrompt, int[][] A, int playerNumber) {
+  public static boolean getWinner(String turnPrompt, int[][] A, int playerNumber, boolean cheating) {
     System.out.println(turnPrompt);
     int row=0, col=0;
-    while(true)
+    while(true && !cheating)
     {
       row = getValidInt("Enter row: ");
       col = getValidInt("Enter col: ");  
@@ -110,11 +110,37 @@ public class TicTacToe {
 	        }
 
 	    }
-    
-  
+
+  public static void prova(){
+    System.out.println("Ha funcionat!");
+  }
+
+/*
+
+Si volem el següent taulell:
+
+[1][2][3]
+[4][5][6]
+[7][8][9]
+
+Passarem el paràmetre "args" de la següent manera:
+
+args = [1,2,3,4,5,6,7,8,9]
+ */
   public static void main(String[] args) {
     
     int[][] grid = new int[3][3];
+    boolean cheating = false;
+
+    if(args!=null && args.length>0){
+      cheating = true;
+      for(int i=0; i<3; i++){
+        for(int j=0; j<3; j++) {
+          grid[i][j] = Integer.parseInt(args[j+i*3]);
+        }
+      }
+    }
+
     int foundWinner = 0;
     
     printBoard(grid);
@@ -124,7 +150,7 @@ public class TicTacToe {
     {
       if(i%2==0) //Player 1
       {
-        if(getWinner("Player 1 turn",grid,1))
+        if(getWinner("Player 1 turn",grid,1,cheating))
         {
           foundWinner=1;
           System.out.println("Player 1 WINS!");
@@ -135,7 +161,7 @@ public class TicTacToe {
       }
       else //Player 2
       {
-        if(getWinner("Player 2 turn",grid,2))
+        if(getWinner("Player 2 turn",grid,2,cheating))
         {
           foundWinner=1;
           System.out.println("Player 2 WINS!");

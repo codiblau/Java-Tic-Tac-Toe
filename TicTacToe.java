@@ -80,8 +80,10 @@ public class TicTacToe {
         break;
       }
       System.out.printf("[%d,%d] is already filled!\n",row,col);
-    }  
-    A[row][col] = playerNumber;     
+    }
+    if(!cheating) {
+      A[row][col] = playerNumber;
+    }
     return checkHit(A);
   }
   

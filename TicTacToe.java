@@ -73,12 +73,10 @@ public class TicTacToe {
   public static boolean getWinner(String turnPrompt, int[][] A, int playerNumber, boolean cheating) {
     System.out.println(turnPrompt);
     int row=0, col=0;
-    while(true && !cheating)
-    {
+    while(!cheating) {
       row = getValidInt("Enter row: ");
       col = getValidInt("Enter col: ");  
-      if(isFree(A,row,col))
-      {
+      if(isFree(A,row,col)) {
         break;
       }
       System.out.printf("[%d,%d] is already filled!\n",row,col);
@@ -126,7 +124,7 @@ args = [1,2,3,4,5,6,7,8,9]
   public static void main(String[] args) {
     main2(args);
   }//end main
-  
+
   public static String main2(String[] args){
     int[][] grid = new int[3][3];
     boolean cheating = false;
@@ -184,8 +182,7 @@ args = [1,2,3,4,5,6,7,8,9]
       }
       System.out.println("It's a draw!");
     }
-    
+
     return "";
   }
  }//end class
-
